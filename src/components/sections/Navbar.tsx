@@ -6,7 +6,7 @@ import ModeToggle from "../features/mode-toggle";
 
 const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
-  const SCROLL_THRESHOLD = 600;
+  const SCROLL_THRESHOLD = 100;
 
   useEffect(() => {
     const handleScroll = () => {
