@@ -13,30 +13,23 @@ import { ArrowRight, CheckCircle2 } from "lucide-react";
 import { Button } from "../ui/button";
 
 const Products = () => {
+  // 1. Variante del Encabezado: Solo opacidad y escala (sin Y)
   const headerVariants: Variants = {
-    hidden: { opacity: 0, y: 20 },
+    hidden: { opacity: 0, scale: 0.98 },
     visible: {
       opacity: 1,
-      y: 0,
-      transition: { duration: 0.6, ease: "easeInOut" },
+      scale: 1,
+      transition: { duration: 0.6, ease: "easeOut" },
     },
   };
 
-  const cardVariantsLeft: Variants = {
-    hidden: { opacity: 0, x: -50 },
+  // 2. Variante de la Tarjeta (unificada): Solo opacidad y escala (sin X)
+  const cardVariants: Variants = {
+    hidden: { opacity: 0, scale: 0.95 },
     visible: {
       opacity: 1,
-      x: 0,
-      transition: { duration: 0.5, ease: "easeInOut" },
-    },
-  };
-
-  const cardVariantsRight: Variants = {
-    hidden: { opacity: 0, x: 50 },
-    visible: {
-      opacity: 1,
-      x: 0,
-      transition: { duration: 0.5, ease: "easeInOut" },
+      scale: 1,
+      transition: { duration: 0.5, ease: "easeOut" },
     },
   };
 
@@ -96,7 +89,7 @@ const Products = () => {
               initial="hidden"
               whileInView="visible"
               viewport={{ once: true, amount: 0.3 }}
-              variants={index % 2 === 0 ? cardVariantsLeft : cardVariantsRight}
+              variants={cardVariants} // Usamos la variante unificada
             >
               <Card
                 className="bg-card border border-border/50 text-foreground hover:shadow-2xl h-full

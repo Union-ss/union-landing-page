@@ -10,25 +10,25 @@ import Contact from "./components/sections/Contact";
 
 const App = () => {
   return (
-    <div className="min-h-screen">
-      <Navbar />
+      <div className="min-h-screen w-full">
+        <Navbar />
 
-      <Hero />
+        <Hero />
 
-      <Features />
+        <Features />
 
-      <Products />
+        <Products />
 
-      <Pricing />
+        <Pricing />
 
-      <Testimonials />
+        <Testimonials />
 
-      <AboutUs />
+        <AboutUs />
 
-      <Contact />
+        <Contact />
 
-      <Footer />
-    </div>
+        <Footer />
+      </div>
   );
 };
 

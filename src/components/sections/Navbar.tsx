@@ -68,11 +68,12 @@ const Navbar = () => {
                   {link}
                 </a>
               ))}
-              <ModeToggle />
               <Button variant="hero" size="sm" className="shadow-lg">
                 Get Started
               </Button>
             </div>
+            <ModeToggle />
+
           </div>
         </div>
       </nav>

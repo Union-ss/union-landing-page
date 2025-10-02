@@ -56,28 +56,36 @@ const features = [
 ];
 
 const Features = () => {
-  const itemVariantsLeft: Variants = {
-    hidden: { opacity: 0, x: -50 },
+  // Variantes para el encabezado: solo opacidad y pequeña escala
+  const headerVariants: Variants = {
+    hidden: { opacity: 0, scale: 0.98 }, // Empezar un poco más pequeño y transparente
     visible: {
       opacity: 1,
-      x: 0,
-      transition: { duration: 0.5, ease: "easeInOut" },
+      scale: 1,
+      transition: { duration: 0.6, ease: "easeOut" },
     },
   };
 
-  const itemVariantsRight: Variants = {
-    hidden: { opacity: 0, x: 50 },
+  // Variantes para las tarjetas: solo opacidad y pequeña escala
+  const itemVariants: Variants = { // Usamos una sola variante ya que no hay desplazamiento lateral
+    hidden: { opacity: 0, scale: 0.95 }, // Empezar un poco más pequeño y transparente
     visible: {
       opacity: 1,
-      x: 0,
-      transition: { duration: 0.5, ease: "easeInOut" },
+      scale: 1,
+      transition: { duration: 0.5, ease: "easeOut" },
     },
   };
 
   return (
     <section id="features" className="py-24 relative bg-background">
       <div className="container mx-auto px-4">
-        <div className="text-center mb-16">
+        <motion.div
+          className="text-center mb-16"
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.3 }}
+          variants={headerVariants}
+        >
           <Badge className="mb-4 bg-purple-500/10 text-purple-400 border-border/20">
             Our Capabilities
           </Badge>
@@ -89,7 +97,7 @@ const Features = () => {
             Everything you need to build, scale, and succeed in the digital
             landscape
           </p>
-        </div>
+        </motion.div>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           {features.map((feature, index) => (
@@ -98,10 +106,19 @@ const Features = () => {
               className={feature.className}
               initial="hidden"
               whileInView="visible"
-              viewport={{ amount: 0.2 }}
-              variants={index % 2 === 0 ? itemVariantsLeft : itemVariantsRight}
+              viewport={{ once: true, amount: 0.2 }}
+              variants={itemVariants} // Usamos la misma variante para todas las tarjetas
             >
-              <Card className="h-full relative overflow-hidden rounded-xl p-6 shadow-lg backdrop-filter backdrop-blur-xl text-foreground bg-card border border-border/50">
+              <Card 
+                className="
+                  h-full relative overflow-hidden rounded-xl p-6 shadow-lg 
+                  backdrop-filter backdrop-blur-xl text-foreground bg-card 
+                  border border-border/50 
+                  
+                  transition-all duration-300 
+                  hover:scale-[1.02] hover:shadow-purple-600/20 hover:border-purple-600/50
+                "
+              >
                 <CardHeader>
                   <div className="w-16 h-16 rounded-lg bg-purple-500/10 flex items-center justify-center mb-4 transition-colors text-purple-600">
                     <div className="text-purple-400">{feature.icon}</div>
