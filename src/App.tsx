@@ -11,31 +11,22 @@ import Contact from "./components/sections/Contact";
 const App = () => {
   return (
     <div className="min-h-screen">
-      {/* Navigation */}
       <Navbar />
 
-      {/* Hero Section */}
       <Hero />
 
-      {/* Features Section */}
       <Features />
 
-      {/* Products Section */}
       <Products />
 
-      {/* Pricing Section */}
       <Pricing />
 
-      {/* Testimonials Section */}
       <Testimonials />
 
-      {/* About Section */}
       <AboutUs />
 
-      {/* Contact Section */}
       <Contact />
 
-      {/* Footer */}
       <Footer />
     </div>
   );
