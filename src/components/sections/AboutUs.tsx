@@ -3,16 +3,18 @@ import { Badge } from "../ui/badge";
 const AboutUs = () => {
   return (
     <div>
-      <section id="about" className="py-24">
+      <section id="about" className="py-24 bg-background">
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto text-center">
-            <Badge className="mb-4 bg-purple-600/10 text-purple-600 border-purple-600/20">
+            <Badge className="mb-4 bg-purple-600/10 text-purple-400 border-purple-600/20">
               About Us
             </Badge>
-            <h2 className="text-4xl md:text-5xl font-bold mb-6 text-background">
+            {/* Cambiado de text-background a text-foreground para asegurar texto claro sobre fondo oscuro */}
+            <h2 className="text-4xl md:text-5xl font-bold mb-6 text-foreground">
               Building the{" "}
               <span className="gradient-text">Future of Software</span>
             </h2>
+            {/* El texto principal sigue usando text-muted-foreground, lo cual es correcto en Dark Mode */}
             <p className="text-xl text-muted-foreground mb-8 leading-relaxed">
               Founded in 2020, Union Software emerged from a vision to bridge
               the gap between cutting-edge technology and practical business

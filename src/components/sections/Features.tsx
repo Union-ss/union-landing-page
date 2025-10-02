@@ -1,4 +1,5 @@
 import { motion } from "framer-motion";
+import type { Variants } from "framer-motion";
 import { Badge } from "../ui/badge";
 import { Code2, Cloud, Rocket, Shield, Zap, Users } from "lucide-react";
 import {
@@ -55,7 +56,7 @@ const features = [
 ];
 
 const Features = () => {
-  const itemVariantsLeft = {
+  const itemVariantsLeft: Variants = {
     hidden: { opacity: 0, x: -50 },
     visible: {
       opacity: 1,
@@ -64,7 +65,7 @@ const Features = () => {
     },
   };
 
-  const itemVariantsRight = {
+  const itemVariantsRight: Variants = {
     hidden: { opacity: 0, x: 50 },
     visible: {
       opacity: 1,
@@ -74,13 +75,13 @@ const Features = () => {
   };
 
   return (
-    <section id="features" className="py-24 relative bg-foreground">
+    <section id="features" className="py-24 relative bg-background">
       <div className="container mx-auto px-4">
         <div className="text-center mb-16">
-          <Badge className="mb-4 bg-purple-500/10 text-purple-500 border-primary/20">
+          <Badge className="mb-4 bg-purple-500/10 text-purple-400 border-border/20">
             Our Capabilities
           </Badge>
-          <h2 className="text-4xl md:text-5xl font-bold mb-4 text-background">
+          <h2 className="text-4xl md:text-5xl font-bold mb-4 text-foreground">
             Powerful Features for{" "}
             <span className="gradient-text">Modern Businesses</span>
           </h2>
@@ -100,15 +101,15 @@ const Features = () => {
               viewport={{ amount: 0.2 }}
               variants={index % 2 === 0 ? itemVariantsLeft : itemVariantsRight}
             >
-              <Card className="h-full relative overflow-hidden rounded-xl p-6 shadow-lg backdrop-filter backdrop-blur-xl text-background bg-background/0 border border-white/10 dark:bg-neutral-700/20 dark:border-neutral-800/30">
+              <Card className="h-full relative overflow-hidden rounded-xl p-6 shadow-lg backdrop-filter backdrop-blur-xl text-foreground bg-card border border-border/50">
                 <CardHeader>
                   <div className="w-16 h-16 rounded-lg bg-purple-500/10 flex items-center justify-center mb-4 transition-colors text-purple-600">
-                    <div className="text-purple-600">{feature.icon}</div>
+                    <div className="text-purple-400">{feature.icon}</div>
                   </div>
-                  <CardTitle className="text-2xl">{feature.title}</CardTitle>
+                  <CardTitle className="text-2xl text-foreground">{feature.title}</CardTitle>
                 </CardHeader>
                 <CardContent>
-                  <CardDescription className="text-base text-gray-400">
+                  <CardDescription className="text-base text-muted-foreground">
                     {feature.description}
                   </CardDescription>
                 </CardContent>

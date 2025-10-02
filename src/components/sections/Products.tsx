@@ -68,7 +68,7 @@ const Products = () => {
   ];
 
   return (
-    <section id="products" className="py-24 bg-foreground relative">
+    <section id="products" className="py-24 bg-background relative">
       <div className="container mx-auto px-4">
         <motion.div
           className="text-center mb-16"
@@ -77,10 +77,10 @@ const Products = () => {
           viewport={{ once: true, amount: 0.3 }}
           variants={headerVariants}
         >
-          <Badge className="mb-4 bg-purple-600/10 text-purple-600 border-purple-600/20">
+          <Badge className="mb-4 bg-purple-600/10 text-purple-400 border-purple-600/20">
             Our Solutions
           </Badge>
-          <h2 className="text-4xl md:text-5xl font-bold mb-4 text-background">
+          <h2 className="text-4xl md:text-5xl font-bold mb-4 text-foreground">
             Products Built for <span className="gradient-text">Excellence</span>
           </h2>
           <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
@@ -99,15 +99,15 @@ const Products = () => {
               variants={index % 2 === 0 ? cardVariantsLeft : cardVariantsRight}
             >
               <Card
-                className="bg-background/0 border-white/10 text-background hover:shadow-2xl h-full
+                className="bg-card border border-border/50 text-foreground hover:shadow-2xl h-full
                 hover:shadow-purple-600/20 transition-all duration-300 group
                 relative rounded-xl flex flex-col"
               >
                 <CardHeader>
-                  <CardTitle className="text-2xl group-hover:text-purple-600 transition-colors">
+                  <CardTitle className="text-2xl group-hover:text-purple-400 transition-colors">
                     {product.name}
                   </CardTitle>
-                  <CardDescription className="text-base text-gray-400">
+                  <CardDescription className="text-base text-muted-foreground">
                     {product.description}
                   </CardDescription>
                 </CardHeader>
@@ -124,7 +124,7 @@ const Products = () => {
                 <CardFooter>
                   <Button
                     variant="ghost"
-                    className="w-full group-hover:bg-purple-600/10"
+                    className="w-full group-hover:bg-purple-600/10 text-foreground hover:text-purple-400"
                   >
                     Learn More <ArrowRight className="ml-2 w-4 h-4" />
                   </Button>

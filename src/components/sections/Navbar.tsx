@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { Button } from "../ui/button";
+import ModeToggle from "../features/mode-toggle";
 
 const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -28,7 +29,7 @@ const Navbar = () => {
       <nav
         className={`w-full transition-all duration-300 rounded-full md:rounded-3xl ${
           isScrolled
-            ? "bg-black/30 backdrop-blur-md shadow-2xl shadow-black/50"
+            ? "bg-card/80 backdrop-blur-md border border-border/50 shadow-2xl shadow-black/50" // Fondo de tarjeta semi-transparente para Dark Mode
             : "bg-transparent"
         }`}
       >
@@ -37,15 +38,15 @@ const Navbar = () => {
             <div className="flex items-center gap-2">
               <span
                 className={`font-bold transition-all duration-300 ${
-                  isScrolled 
-                    ? "text-white text-lg" 
-                    : "gradient-text text-2xl" 
+                  isScrolled
+                    ? "text-foreground text-lg" // Texto claro sobre la barra oscura
+                    : "gradient-text text-2xl" // Mantiene el gradiente en la posición superior (sobre el hero)
                 }`}
               >
                 Union Software
               </span>
             </div>
-            
+
             <div className="hidden md:flex items-center gap-6">
               {[
                 "Features",
@@ -60,13 +61,14 @@ const Navbar = () => {
                   href={`#${link.toLowerCase()}`}
                   className={`transition-colors text-sm font-medium ${
                     isScrolled
-                      ? "text-white/80 hover:text-white"
-                      : "text-white/90 hover:text-white"
+                      ? "text-muted-foreground hover:text-foreground" // Usa colores de tema para texto en Dark Mode
+                      : "text-foreground/90 hover:text-foreground" // Mantiene el texto blanco arriba, asumiendo un fondo de hero oscuro
                   }`}
                 >
                   {link}
                 </a>
               ))}
+              <ModeToggle />
               <Button variant="hero" size="sm" className="shadow-lg">
                 Get Started
               </Button>

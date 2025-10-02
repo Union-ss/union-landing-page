@@ -29,13 +29,13 @@ const Contact = () => {
   return (
     <div>
       {" "}
-      <section id="contact" className="py-24 bg-foreground">
+      <section id="contact" className="py-24 bg-background">
         <div className="container mx-auto px-4">
           <div className="text-center mb-16">
-            <Badge className="mb-4 bg-purple-600/10 text-purple-600 border-purple-600/20">
+            <Badge className="mb-4 bg-purple-600/10 text-purple-400 border-purple-600/20">
               Get in Touch
             </Badge>
-            <h2 className="text-4xl md:text-5xl font-bold mb-4 text-background">
+            <h2 className="text-4xl md:text-5xl font-bold mb-4 text-foreground">
               Let's Build Something{" "}
               <span className="gradient-text">Amazing</span>
             </h2>
@@ -45,9 +45,9 @@ const Contact = () => {
           </div>
 
           <div className="max-w-2xl mx-auto">
-            <Card className="bg-foreground border border-background/20">
+            <Card className="bg-card border border-border/50">
               <CardHeader>
-                <CardTitle className="text-2xl text-background">
+                <CardTitle className="text-2xl text-foreground">
                   Send us a message
                 </CardTitle>
                 <CardDescription>
@@ -58,7 +58,7 @@ const Contact = () => {
               <CardContent>
                 <form
                   onSubmit={handleSubmit}
-                  className="space-y-4 text-background"
+                  className="space-y-4 text-foreground"
                 >
                   <div>
                     <label
@@ -70,7 +70,8 @@ const Contact = () => {
                     <Input
                       id="name"
                       placeholder="Your name"
-                      className="border-background/20"
+                      // Usamos border-input, bg-input o simplemente omitimos para usar el estilo por defecto de Shadcn/Tailwind
+                      // Aquí usamos el estilo por defecto que se adapta al tema
                       value={formData.name}
                       onChange={(e) =>
                         setFormData({ ...formData, name: e.target.value })
@@ -90,7 +91,6 @@ const Contact = () => {
                       type="email"
                       placeholder="your.email@example.com"
                       value={formData.email}
-                      className="border-background/20"
                       onChange={(e) =>
                         setFormData({ ...formData, email: e.target.value })
                       }
@@ -108,7 +108,6 @@ const Contact = () => {
                       id="message"
                       placeholder="Tell us about your project..."
                       value={formData.message}
-                      className="border-background/20"
                       onChange={(e) =>
                         setFormData({ ...formData, message: e.target.value })
                       }

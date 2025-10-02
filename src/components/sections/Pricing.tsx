@@ -7,13 +7,15 @@ const Pricing = () => {
   return (
     <div>
       {" "}
-      <section id="pricing" className="py-24 bg-foreground">
+      {/* Usamos bg-background para integrarse con el tema oscuro general, o un color más oscuro si la sección lo requiere */}
+      <section id="pricing" className="py-24 bg-background"> 
         <div className="container mx-auto px-4">
           <div className="text-center mb-16">
-            <Badge className="mb-4 bg-purple-600/10 text-purple-600 border-purple-600/20">
+            <Badge className="mb-4 bg-purple-600/10 text-purple-400 border-purple-600/20">
               Pricing Plans
             </Badge>
-            <h2 className="text-4xl md:text-5xl font-bold mb-4 glow-text text-background">
+            {/* Cambiado de text-background a text-foreground para asegurar texto claro sobre fondo oscuro */}
+            <h2 className="text-4xl md:text-5xl font-bold mb-4  text-foreground"> 
               Choose Your <span className="gradient-text">Perfect Plan</span>
             </h2>
             <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
@@ -69,19 +71,22 @@ const Pricing = () => {
             ].map((plan, index) => (
               <Card
                 key={index}
-                className={`bg-black/10 border-white/10 text-background backdrop-blur-2xl  hover:shadow-2xl transition-all duration-300 relative ${
+                // Ajustada la tarjeta para un mejor Dark Mode:
+                // Usamos 'bg-card' para el fondo, 'border-border/50' para el borde por defecto.
+                className={`bg-card border border-border/50 backdrop-blur-sm hover:border-purple-600/50 hover:shadow-2xl transition-all duration-300 relative ${
                   plan.recommended
-                    ? "border-purple-600 shadow-xl shadow-purple-600/20 scale"
+                    ? "border-purple-600 shadow-xl shadow-purple-600/20" // Mantener el estilo recomendado
                     : ""
                 }`}
               >
                 {plan.recommended && (
-                  <Badge className="absolute -top-3 left-1/2 transform -translate-x-1/2 bg-purple-600 text-purple-600-foreground">
+                  <Badge className="absolute -top-3 left-1/2 transform -translate-x-1/2 bg-purple-600 text-primary-foreground">
                     Recommended
                   </Badge>
                 )}
                 <CardHeader>
-                  <CardTitle className="text-2xl">{plan.name}</CardTitle>
+                  {/* El texto de la tarjeta será claro por defecto (foreground) */}
+                  <CardTitle className="text-2xl">{plan.name}</CardTitle> 
                   <CardDescription>{plan.description}</CardDescription>
                   <div className="mt-4">
                     <span className="text-5xl font-bold gradient-text">

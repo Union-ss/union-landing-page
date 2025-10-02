@@ -6,13 +6,15 @@ const Testimonials = () => {
   return (
     <div>
       {" "}
-      <section className="py-24 bg-foreground">
+      {/* El fondo de la sección principal debe ser oscuro (bg-background) */}
+      <section className="py-24 bg-background">
         <div className="container mx-auto px-4">
           <div className="text-center mb-16">
-            <Badge className="mb-4 bg-purple-600/10 text-purple-600 border-purple-600/20">
+            <Badge className="mb-4 bg-purple-600/10 text-purple-400 border-purple-600/20">
               Testimonials
             </Badge>
-            <h2 className="text-4xl md:text-5xl font-bold mb-4 text-background">
+            {/* El título principal debe ser claro (text-foreground) */}
+            <h2 className="text-4xl md:text-5xl font-bold mb-4 text-foreground">
               What Our <span className="gradient-text">Clients Say</span>
             </h2>
             <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
@@ -46,7 +48,8 @@ const Testimonials = () => {
             ].map((testimonial, index) => (
               <Card
                 key={index}
-                className="bg-foreground border-white/10 hover:shadow-xl hover:shadow-purple-600/10 transition-all duration-300"
+                // Usamos bg-card o un color ligeramente diferente para la tarjeta y un borde sutil
+                className="bg-card border border-border/50 hover:shadow-xl hover:shadow-purple-600/20 transition-all duration-300"
               >
                 <CardHeader>
                   <div className="flex gap-1 mb-2">
@@ -57,12 +60,14 @@ const Testimonials = () => {
                       />
                     ))}
                   </div>
+                  {/* CardDescription será text-muted-foreground por defecto */}
                   <CardDescription className="text-base italic">
                     "{testimonial.content}"
                   </CardDescription>
                 </CardHeader>
                 <CardFooter className="flex flex-col items-start">
-                  <p className="font-semibold text-background">{testimonial.name}</p>
+                  {/* El nombre debe ser claro (text-foreground) */}
+                  <p className="font-semibold text-foreground">{testimonial.name}</p>
                   <p className="text-sm text-muted-foreground">
                     {testimonial.role}
                   </p>

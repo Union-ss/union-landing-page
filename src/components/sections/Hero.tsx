@@ -1,6 +1,5 @@
 import React, { useRef, useEffect, useCallback } from "react";
 import { ChevronRight } from "lucide-react";
-// Asumo que estas importaciones son válidas en tu proyecto
 import { Button } from "../ui/button";
 import { Badge } from "../ui/badge";
 import heroImage from "@/assets/bg-purple.jpg";
@@ -27,11 +26,9 @@ class Particle {
   }
 
   update(width: number, height: number): void {
-    // Mantener la posición dentro de los límites
     this.x += this.vx;
     this.y += this.vy;
 
-    // Invertir velocidad al tocar un borde
     if (this.x < 0 || this.x > width) this.vx *= -1;
     if (this.y < 0 || this.y > height) this.vy *= -1;
   }
@@ -47,12 +44,10 @@ class Particle {
 // --- FIN: Lógica del Sistema de Partículas ---
 
 const Hero: React.FC = () => {
-  // Tipado de useRef
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
   const animationFrameId = useRef<number | null>(null);
   const particles = useRef<Particle[]>([]);
 
-  // Función de inicialización y animación con tipado de retorno
   const initCanvas = useCallback((): (() => void) => {
     const canvas = canvasRef.current;
     if (!canvas) {
@@ -61,7 +56,6 @@ const Hero: React.FC = () => {
       };
     }
 
-    // Aseguramos que el contexto exista
     const ctx = canvas.getContext("2d");
     if (!ctx) {
       console.error("No se pudo obtener el contexto 2D del canvas.");
@@ -70,7 +64,6 @@ const Hero: React.FC = () => {
       };
     }
 
-    // Necesitamos el elemento contenedor para las dimensiones
     const container = canvas.parentElement;
     if (!container) {
       console.error("El canvas debe estar dentro de un elemento contenedor.");
@@ -79,12 +72,10 @@ const Hero: React.FC = () => {
       };
     }
 
-    // Función para ajustar el tamaño del canvas
     const resizeCanvas = (): void => {
       canvas.width = container.offsetWidth;
       canvas.height = container.offsetHeight;
 
-      // Regenerar partículas en caso de redimensionamiento severo o inicialización
       if (particles.current.length === 0) {
         particles.current = Array.from({ length: PARTICLE_COUNT }, () => {
           return new Particle(
@@ -95,22 +86,18 @@ const Hero: React.FC = () => {
       }
     };
 
-    // Inicializar y manejar resize
     resizeCanvas();
     window.addEventListener("resize", resizeCanvas);
 
-    // Bucle de animación
     const animate = (): void => {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
 
       for (let i = 0; i < particles.current.length; i++) {
         const p1 = particles.current[i];
 
-        // Llamada tipada
         p1.update(canvas.width, canvas.height);
         p1.draw(ctx);
 
-        // Conectar partículas cercanas
         for (let j = i + 1; j < particles.current.length; j++) {
           const p2 = particles.current[j];
           const distance = Math.sqrt(
@@ -134,51 +121,62 @@ const Hero: React.FC = () => {
 
     animationFrameId.current = requestAnimationFrame(animate);
 
-    // Función de limpieza
     return () => {
       window.removeEventListener("resize", resizeCanvas);
       if (animationFrameId.current !== null) {
         cancelAnimationFrame(animationFrameId.current);
       }
     };
-  }, []); // Dependencia vacía: el mouse ya no afecta la animación
+  }, []);
 
-  // Efecto para la inicialización
   useEffect(() => {
-    // Llamar a la inicialización del canvas y animación
     const cleanup = initCanvas();
     return cleanup;
   }, [initCanvas]);
 
   return (
     <div>
-      <section className="relative min-h-screen flex items-center justify-center overflow-hidden pt-20">
+      {/* Fondo de la sección principal adaptado a bg-background */}
+      <section className="relative min-h-screen flex items-center justify-center overflow-hidden pt-20 bg-background">
         <div className="absolute inset-0 z-0">
           <img
             src={heroImage}
             alt="Union Software Hero"
-            className="w-full h-full object-cover opacity-100"
+            // Reducimos la opacidad para que el fondo oscuro base domine
+            className="w-full h-full object-cover dark:opacity-100 opacity-20"
           />
-          <div className="absolute inset-0 bg-gradient-to-b from-foreground/50 via-foreground/80 to-foreground"></div>
+          {/* El gradiente debe ir de transparente/oscuro a oscuro (bg-background) para oscurecer la imagen y asegurar el contraste del texto claro */}
+          <div className="absolute inset-0 bg-gradient-to-b from-background/50 via-background/80 to-background"></div>
         </div>
         <canvas
-            ref={canvasRef}
-            className="absolute inset-0 z-0 w-full h-full pointer-events-none opacity-40"
-          />
+          ref={canvasRef}
+          className="absolute inset-0 z-0 w-full h-full pointer-events-none opacity-40"
+        />
         <div
           className="absolute inset-0 z-0"
           style={{
+            // El radial gradient también debe usar colores oscuros/transparentes para un tema oscuro
             background:
-            "radial-gradient(circle at 50% 0%, hsl(267 66% 51% / 0.15), transparent 50%)",
+              "radial-gradient(circle at 50% 0%, hsl(267 66% 51% / 0.15), transparent 50%)",
           }}
         ></div>
-          
 
         <div className="container mx-auto px-4 z-10 text-center">
-          <Badge className="mb-6 bg-purple-600/10 text-purple-600 border-purple-600/20 hover:bg-purple-600/20 shadow-xl shadow-purple-600/80">
+          <Badge
+            className="
+    mb-6 
+    bg-purple-100 text-purple-700 border-purple-200 
+    hover:bg-purple-200 
+    shadow-lg shadow-purple-200/50
+
+    dark:bg-purple-600/10 dark:text-purple-400 dark:border-purple-600/20 
+    dark:hover:bg-purple-600/20 dark:shadow-xl dark:shadow-purple-600/80
+  "
+          >
             Innovate. Build. Scale.
           </Badge>
-          <h1 className="text-5xl md:text-7xl font-black mb-6 text-background">
+          {/* El título principal debe ser text-foreground (claro) */}
+          <h1 className="text-5xl md:text-7xl font-black mb-6 text-foreground">
             Transform Your Digital
             <br />
             <span className="gradient-text">Vision Into Reality</span>
