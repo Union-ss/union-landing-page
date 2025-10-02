@@ -6,7 +6,7 @@ import { Badge } from "../ui/badge";
 import heroImage from "@/assets/bg-purple.jpg";
 
 const PARTICLE_COLOR: string = "168, 85, 247"; // RGB de purple-600
-const PARTICLE_COUNT: number = 50;
+const PARTICLE_COUNT: number = 60;
 const PARTICLE_SPEED: number = 0.15;
 const CONNECTION_DISTANCE: number = 150;
 
@@ -153,10 +153,6 @@ const Hero: React.FC = () => {
   return (
     <div>
       <section className="relative min-h-screen flex items-center justify-center overflow-hidden pt-20">
-        <canvas
-          ref={canvasRef}
-          className="absolute inset-0 z-0 w-full h-full pointer-events-none"
-        />
         <div className="absolute inset-0 z-0">
           <img
             src={heroImage}
@@ -165,13 +161,18 @@ const Hero: React.FC = () => {
           />
           <div className="absolute inset-0 bg-gradient-to-b from-foreground/50 via-foreground/80 to-foreground"></div>
         </div>
+        <canvas
+            ref={canvasRef}
+            className="absolute inset-0 z-0 w-full h-full pointer-events-none opacity-40"
+          />
         <div
           className="absolute inset-0 z-0"
           style={{
             background:
-              "radial-gradient(circle at 50% 0%, hsl(267 66% 51% / 0.15), transparent 50%)",
+            "radial-gradient(circle at 50% 0%, hsl(267 66% 51% / 0.15), transparent 50%)",
           }}
         ></div>
+          
 
         <div className="container mx-auto px-4 z-10 text-center">
           <Badge className="mb-6 bg-purple-600/10 text-purple-600 border-purple-600/20 hover:bg-purple-600/20 shadow-xl shadow-purple-600/80">
